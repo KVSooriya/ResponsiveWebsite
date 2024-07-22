@@ -1,0 +1,318 @@
+/* Universal selector - selects all elements and apply style .. it is not like inheriting, it is directly applying styles over the element 
+if no other conflicting styles exists for the element. This also has highest priority over inheriting priority */
+
+/* Global reset - resetting all margins and padding for each and every single element so we can apply as per our wish. This kind of global reset is extremely common */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Since body is the parent element of all other elements, those properties are inherited to the child element too .. But if the child element has specific property applied to them, then it gets the priority over the inheriting style .. Thus inheriting property has the lowest priority .. 
+  Note: Not all properties are inherited .. in the below case text-based properties like font-family and color are inherited but border-top
+  is only applied to body but not to the child elements 
+*/
+body {
+  color: #444;
+  font-family: sans-serif;
+  border-top: 10px solid #1098ad;
+  position: relative;
+}
+
+.container {
+  width: 800px;
+  /* margin-left: auto;
+  margin-right: auto; */
+  margin: 0 auto;
+  /* position: relative; */
+}
+
+.main-header {
+  background-color: #f7f7f7;
+  /* padding: 20px;        shorthand notation for applying same padding on all 4 sides */
+  /* padding-left: 40px;
+  padding-right: 40px; */
+
+  /* If we specify 2 values for padding, its shorthand notation for padding top and bottom, then padding left and right*/
+  padding: 20px 40px;
+  margin-bottom: 60px;
+}
+
+.post-header {
+  margin-bottom: 40px;
+  /* position: relative; */
+}
+
+/* nav is the parent element and inside there is anchor elements and since anchor does not have specific property declared for font-size it
+gets inherited from below nav */
+nav {
+  font-size: 18px;
+}
+
+article {
+  margin-bottom: 60px;
+}
+
+aside {
+  background-color: #f7f7f7;
+  /* special/shorthand property that accepts multiple value
+     border-width border-style border-color */
+  /* border: 5px solid #1098ad;   */
+  border-top: 5px solid #1098ad;
+  border-bottom: 5px solid #1098ad;
+  padding: 50px 0;
+  width: 500px;
+}
+
+/* Combining selectors for basically applying same property - called as list selector */
+h1,
+h2,
+h3 {
+  color: #1098ad;
+}
+
+h1 {
+  font-size: 26px;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+h2 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+h4 {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+p {
+  font-size: 22px;
+  line-height: 1.5; /* here what does 1.5 mean? its 1.5 times the font-size */
+  margin-bottom: 15px;
+}
+
+ul,
+ol {
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+li {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* We want all li elements to have some margin between other li elements but we dont want last li element to have any margin */
+li:last-child {
+  margin-bottom: 0;
+}
+
+/* descendant selector - ie. apply style to paragraph inside the footer */
+/* footer p {
+  font-size: 16px;
+} */
+
+/* Descendant selector - apply style only to paragraph inside the header which is inside the article element */
+/* article header p {
+  font-style: italic;
+} */
+
+#author {
+  font-size: 18px;
+  font-style: italic;
+}
+
+#copyright {
+  font-size: 16px;
+}
+
+.related-author {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ul {
+  list-style: none;
+} */
+
+.related {
+  list-style: none;
+}
+
+/* .first-li {
+  font-weight: bold;
+} */
+
+/* This selects the first li child of all ol and ul elements */
+li:first-child {
+  font-weight: bold;
+}
+
+/* This selects the last li child of all ol and ul elements */
+li:last-child {
+  font-style: italic;
+}
+
+/* This selects nth-child of all ol and ul elements mentioned in () */
+/* li:nth-child(2) {
+  color: #1098ad;
+} */
+
+/* This selects all even li childs of ol and ul elements */
+/* li:nth-child(even) {
+  color: #1098ad;
+} */
+
+/* Common misconceptions we have around pseudo classes - Let's say we want to select first paragraph element that's inside of the article */
+/* By writing like below, the common misconception is to select the first p child under the article. But it will select the p element
+   only if it is the first-child of the article element itself. In our case, the first-child of article is header element. 
+   Note : If we mix multiple elements inside of a parent element, then these pseudo classes dont work really well. These pseudo classes
+   like first-child last-child nth-child() are however perfect for situations like ol or ul where all the child elements are same ie. li */
+/* article p:first-child {
+  color: red;
+} */
+
+/* This works because it selects the paragraph element if it is the last child of the article and it is, in our code.  */
+/* article p:last-child {
+  color: red;
+} */
+
+/* Styling links or hyperlinks */
+/* Not a good practice to style the link directly. Using pseudo classes can allow us to target different states */
+/* a {
+  color: #1098ad;
+} */
+
+/* a:link is the pseudo class which applies styles to anchor tag which has the href attribute */
+a:link {
+  color: #1098ad;
+  text-decoration: none;
+}
+
+/* a:visited is the pseudo class to apply styles to links if it was visited before */
+a:visited {
+  color: #1098ad;
+}
+
+/* a:hover is the pseudo class to apply styles when a mouse is hovered over the link */
+a:hover {
+  color: orangered;
+  font-weight: bold;
+  text-decoration: underline; /* This is also shorthand property where we can define multiple values like text-decoration-line 
+  text-decoration-style text-decoration-color Eg: underline dashed orangered or simply underline orangered */
+}
+
+/* a:active is the pseudo class to apply styles when the link is clicked */
+a:active {
+  background-color: black;
+  font-style: italic;
+}
+
+/* The above four states are always defined in this exact order for the link - LVHA */
+
+/* Resolving conflicts 
+  #copyright has highest priority since id selector.
+  .copyright and .text are second highest priority but since both are under same category, one last in the code applies
+  footer p has the lowest priority since element selector
+*/
+/* #copyright {
+  color: red;
+}
+
+.copyright {
+  color: blue;
+}
+
+.text {
+  color: yellow;
+}
+
+footer p {
+  color: green;
+} */
+
+/* It is common to specify height and width in CSS than to specify in HTML. The width and height in CSS overrides the properties in html. 
+   Also, if we just specify the width and didn't specify height, then the height in html property is considered. So, to avoid this and to
+   adjust it to the aspect ratio, we mention height as auto in CSS */
+.post-img {
+  width: 100%;
+  height: auto;
+}
+
+nav a:link {
+  /* Trying to apply padding and margin (vertically) for anchor - inline element */
+  /* background-color: yellowgreen;
+  margin: 20px;
+  padding: 20px;
+  display: block; To apply box model (margin and padding),  we are changing to block element but it gets vertically stacked */
+
+  /* Using property of inline-block to take advantage of both inline and block - looks inline from outside and behaves block from inside */
+  margin-right: 30px;
+  margin-top: 10px;
+  display: inline-block; /* Setting this property allows us to apply margin-top since it has both features of inline and block */
+}
+
+nav a:link:last-child {
+  margin-right: 0;
+}
+
+button {
+  font-size: 22px;
+  padding: 20px;
+  cursor: pointer;
+
+  /* Absolute positioning */
+  position: absolute;
+  /* top: 50px;
+  left: 50px; */
+  bottom: 50px;
+  right: 50px;
+}
+
+/* Pseudo elements */
+h1::first-letter {
+  font-style: normal;
+  margin-right: 5px;
+}
+
+/*selects first letter of h2 and applies style
+h2::first-letter {
+  font-size: 80px;
+}
+
+/* selects first-line of all paragraph and applies the style
+p::first-line {
+  color: red;
+}
+*/
+
+/* Adjacent element selector or adjacent sibling selector: + selects the element which is adjacent */
+/* selects all paragraph which is adjacent ie. next to h3 and styles the first letter of paragraph */
+/* h3 + p::first-line {
+  color: red;
+} */
+
+h2 {
+  position: relative; /* We are setting h2 element to be relative so that we can position h2::after (pseudo element absolute to h2) */
+}
+/* Most used and most important pseudo element - before and after */
+h2::after {
+  content: "TOP"; /* Even if we dont want any text in our pseudo element, we still have to define the content property with "" */
+  background-color: #ffe70e;
+  color: #444;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block; /* By default, any pseudo element is an inline element. So, to give padding we need to set display to inline-block */
+  padding: 5px 10px;
+  position: absolute;
+  top: -10px;
+  right: -25px;
+}
